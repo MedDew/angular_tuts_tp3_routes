@@ -1,0 +1,32 @@
+<p>The car displayed below will be deleted if you click on the button : </p>
+
+<div *ngIf="car">
+  <div *ngIf="!isDeletedCar">
+    <ul>
+      <li>Id : {{ car.id }}</li>
+      <li>Brand : {{ car.brand }}</li>
+      <li>Model : {{ car.model }}</li>
+      <li>Price : {{ car.price }}</li>
+      <li>Weight : {{ car.weight }}</li>
+      <li>HorsePower : {{ car.horsePower }}</li>
+      <li>N°Seats : {{ car.nbSeats }}</li>
+    </ul>
+    
+    <button (click)="onCarDeletion(car)">Delete Car</button>
+  </div>
+
+  <div *ngIf="isDeletedCar">
+    <p>The following car has been deleted : </p>
+
+    <ul>
+      <li>Id : {{ car.id }}</li>
+      <li>Brand : {{ car.brand }}</li>
+      <li>Model : {{ car.model }}</li>
+      <li>Price : {{ car.price }}</li>
+      <li>Weight : {{ car.weight }}</li>
+      <li>HorsePower : {{ car.horsePower }}</li>
+      <li>N° Seats : {{ car.nbSeats }}</li>
+    </ul>
+    <a [routerLink]="'/carList'">Back to Car List</a>
+  </div>
+</div>
