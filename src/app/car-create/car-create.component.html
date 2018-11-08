@@ -1,0 +1,98 @@
+<div [ngSwitch]="isCarCreated">
+
+    <div *ngSwitchCase="false">
+
+      <form [formGroup]="carFormCreationGroup" (ngSubmit)="onCarCreate()">
+        
+        <div>
+          <label for="brand">Brand : </label>
+          <!--VALUE OF THIS FIELD IS SET IN THE ngOnINit METHOD OF THE COMPONENT-->
+          <input type="text" id="brand" formControlName="brand"  /><!--[value]="car.brand"-->
+          <div *ngIf="carFormCreationGroup.controls.brand.touched || carFormCreationGroup.controls.brand.dirty">
+            <span *ngIf="carFormCreationGroup.controls.brand.errors != null && carFormCreationGroup.controls.brand.errors.required">
+              Please enter a car brand
+            </span>
+          </div>
+        </div>
+        <br/>
+        
+        <div>
+          <label for="model">Model : </label>
+          <!--VALUE OF THIS FIELD IS SET IN THE ngOnINit METHOD OF THE COMPONENT-->
+          <input type="text" id="model" formControlName="model"/><!--[value]="car.model"-->
+          <div *ngIf="carFormCreationGroup.controls.model.touched || carFormCreationGroup.controls.model.dirty">
+            <span *ngIf="carFormCreationGroup.controls.model.errors != null && carFormCreationGroup.controls.model.errors.required">
+              Please enter a car model
+            </span>
+          </div>
+        </div>
+        <br/>
+        
+        <div>
+          <label for="price">Price : </label>
+          <!--VALUE OF THIS FIELD IS SET IN THE ngOnINit METHOD OF THE COMPONENT-->
+          <input type="number" id="price" formControlName="price"/><!--[value]="car.price"-->
+          <div *ngIf="carFormCreationGroup.controls.price.touched || carFormCreationGroup.controls.price.dirty">
+            <span *ngIf="carFormCreationGroup.controls.price.errors != null && carFormCreationGroup.controls.price.errors.required">
+              Please enter a car price
+            </span>
+          </div>
+        </div>
+        <br/>
+        
+        <div>
+          <label for="seats">Seats number : </label>
+          <!--VALUE OF THIS FIELD IS SET IN THE ngOnINit METHOD OF THE COMPONENT-->
+          <input type="number" id="seats" formControlName="seats" max="5" /><!--[value]="car.nbSeats"-->
+          <div *ngIf="carFormCreationGroup.controls.seats.touched || carFormCreationGroup.controls.seats.dirty">
+            <span *ngIf="carFormCreationGroup.controls.seats.errors != null && carFormCreationGroup.controls.seats.errors.required">
+              Please enter a the number of seats
+            </span>
+          </div>
+        </div>
+        <br/>
+        
+        <div>
+          <label for="horsePower">Horse Power : </label>
+          <!--VALUE OF THIS FIELD IS SET IN THE ngOnINit METHOD OF THE COMPONENT-->
+          <input type="number" id="horsePower" formControlName="horsePower" /><!--[value]="car.horsePower"-->
+          <div *ngIf="carFormCreationGroup.controls.horsePower.touched || carFormCreationGroup.controls.horsePower.dirty">
+            <span *ngIf="carFormCreationGroup.controls.horsePower.errors != null && carFormCreationGroup.controls.horsePower.errors.required">
+              Please enter a the horse power
+            </span>
+          </div>
+        </div>
+        <br/>
+        
+        <div>
+          <label for="weight">Weight : </label>
+          <!--VALUE OF THIS FIELD IS SET IN THE ngOnINit METHOD OF THE COMPONENT-->
+          <input type="number" id="weight" formControlName="weight" /><!--[value]="car.weight"-->
+          <div *ngIf="carFormCreationGroup.controls.weight.touched || carFormCreationGroup.controls.weight.dirty">
+            <span *ngIf="carFormCreationGroup.controls.weight.errors != null && carFormCreationGroup.controls.weight.errors.required">
+              Please enter a the weight
+            </span>
+          </div>
+        </div>
+        <br/>
+        
+        <div>
+          <input type="submit" value="Create Car" />
+        </div>
+        <br/>
+        
+        
+      </form>
+    </div>
+
+    <div *ngSwitchCase="true">
+      <p>The car {{ carCreated.brand }} has beeen created with the following features : </p>
+      <ul>
+        <li>Model : {{ carCreated.model }}</li>
+        <li>Price : {{ carCreated.price }}</li>
+        <li>Weight : {{ carCreated.weight }}</li>
+        <li>HorsePower : {{ carCreated.horsePower }}</li>
+      </ul>
+      <a (click)="backToCarCreation()">Back to Car Creation</a>
+    </div>
+  </div>
