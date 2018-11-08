@@ -1,0 +1,108 @@
+<div [ngSwitch]="isCarUpdated">
+
+    <div *ngSwitchCase="false">
+
+      <form [formGroup]="carUpdateFormGroup" (ngSubmit)="onCarUpdate()">
+        
+        <input type="hidden"  formControlName="id"  /><!--[value]="car.brand"-->
+        <div>
+          <label for="brand">Brand : </label>
+          <!--VALUE OF THIS FIELD IS SET IN THE ngOnINit METHOD OF THE COMPONENT-->
+          <input type="text" id="brand" formControlName="brand"  /><!--[value]="car.brand"-->
+          <div *ngIf="carUpdateFormGroup.controls.brand.touched || carUpdateFormGroup.controls.brand.dirty">
+            <span *ngIf="carUpdateFormGroup.controls.brand.errors != null && carUpdateFormGroup.controls.brand.errors.required">
+              Please enter a car brand
+            </span>
+          </div>
+        </div>
+        <br/>
+        
+        <div>
+          <label for="model">Model : </label>
+          <!--VALUE OF THIS FIELD IS SET IN THE ngOnINit METHOD OF THE COMPONENT-->
+          <input type="text" id="model" formControlName="model"/><!--[value]="car.model"-->
+          <div *ngIf="carUpdateFormGroup.controls.model.touched || carUpdateFormGroup.controls.model.dirty">
+            <span *ngIf="carUpdateFormGroup.controls.model.errors != null && carUpdateFormGroup.controls.model.errors.required">
+              Please enter a car model
+            </span>
+          </div>
+        </div>
+        <br/>
+        
+        <div>
+          <label for="price">Price : </label>
+          <!--VALUE OF THIS FIELD IS SET IN THE ngOnINit METHOD OF THE COMPONENT-->
+          <input type="number" id="price" formControlName="price"/><!--[value]="car.price"-->
+          <div *ngIf="carUpdateFormGroup.controls.price.touched || carUpdateFormGroup.controls.price.dirty">
+            <span *ngIf="carUpdateFormGroup.controls.price.errors != null && carUpdateFormGroup.controls.price.errors.required">
+              Please enter a car price
+            </span>
+          </div>
+        </div>
+        <br/>
+        
+        <div>
+          <label for="seats">Seats number : </label>
+          <!--VALUE OF THIS FIELD IS SET IN THE ngOnINit METHOD OF THE COMPONENT-->
+          <input type="number" id="seats" formControlName="nbSeats" max="5" /><!--[value]="car.nbSeats"-->
+          <div *ngIf="carUpdateFormGroup.controls.nbSeats.touched || carUpdateFormGroup.controls.nbSeats.dirty">
+            <span *ngIf="carUpdateFormGroup.controls.nbSeats.errors != null && carUpdateFormGroup.controls.nbSeats.errors.required">
+              Please enter a the number of seats
+            </span>
+          </div>
+        </div>
+        <br/>
+        
+        <div>
+          <label for="horsePower">Horse Power : </label>
+          <!--VALUE OF THIS FIELD IS SET IN THE ngOnINit METHOD OF THE COMPONENT-->
+          <input type="number" id="horsePower" formControlName="horsePower" /><!--[value]="car.horsePower"-->
+          <div *ngIf="carUpdateFormGroup.controls.horsePower.touched || carUpdateFormGroup.controls.horsePower.dirty">
+            <span *ngIf="carUpdateFormGroup.controls.horsePower.errors != null && carUpdateFormGroup.controls.horsePower.errors.required">
+              Please enter a the horse power
+            </span>
+          </div>
+        </div>
+        <br/>
+        
+        <div>
+          <label for="weight">Weight : </label>
+          <!--VALUE OF THIS FIELD IS SET IN THE ngOnINit METHOD OF THE COMPONENT-->
+          <input type="number" id="weight" formControlName="weight" /><!--[value]="car.weight"-->
+          <div *ngIf="carUpdateFormGroup.controls.weight.touched || carUpdateFormGroup.controls.weight.dirty">
+            <span *ngIf="carUpdateFormGroup.controls.weight.errors != null && carUpdateFormGroup.controls.weight.errors.required">
+              Please enter a the weight
+            </span>
+          </div>
+        </div>
+        <br/>
+        
+        <div>
+          <input type="submit" value="Update Car" />
+        </div>
+        <br/>
+      </form>
+    
+    </div>
+
+    <div *ngSwitchCase="true">
+     
+      <div class="float" id="updateMessage">The car has been updated from : </div>
+      <ul class="float">
+        <li>Brand : {{ car.brand }}</li>
+        <li>Model : {{ car.model }}</li>
+        <li>Price : {{ car.price }}</li>
+        <li>Weight : {{ car.weight }}</li>
+        <li>N° Seats : {{ car.nbSeats }}</li>
+      </ul>
+      <div class="float" id="updateMessage">To :</div>
+      <ul class="float">
+        <li>Brand : {{ updatedCar.brand }}</li>
+        <li>Model : {{ updatedCar.model }}</li>
+        <li>Price : {{ updatedCar.price }}</li>
+        <li>Weight : {{ updatedCar.weight }}</li>
+        <li>N° Seats : {{ updatedCar.nbSeats }}</li>
+      </ul>
+      <a [routerLink]="['/carList', updatedCar.id]">Get the detail of the car <b>{{ updatedCar.model }}</b></a>
+    </div>
+  </div>
