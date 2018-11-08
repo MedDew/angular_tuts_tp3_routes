@@ -1,0 +1,50 @@
+<h1>Car List</h1>
+<table>
+  <tr>
+    <th>Id</th>
+    <th>N° Seats</th>
+    <th>Price</th>
+    <th>Weight</th>
+    <th>Brand</th>
+    <th>Model</th>
+    <th>HorsePower (Ch.)</th>
+    <th>HorsePower (kW)</th>
+    <th>Update Car</th>
+    <th>Direct Car Deletion</th>
+    <th>Go To Car Deletion</th>
+  </tr>
+  <tr *ngFor="let car of carList" (click)="onSelectCar(car)"><!--onCarSelected(car) getCarSelected(car)-->
+    <!-- <app-car-detail [car]="car" (click)="onClick(car)"> -->
+      <td>{{ car.id }}</td>
+      <td>{{ car.nbSeats }}</td>
+      <td>{{ car.price | currency :"CAD":"symbol":"4.3-4" }}</td>
+      <td>{{ car.weight }} kg</td>
+      <td>{{ car.brand | uppercase }}</td>
+      <td>{{ car.model }}</td>
+      <td>{{ car.horsePower | horsepowerCustomPipe }}</td>
+      <td>{{ car.horsePower | horsepowerCustomPipe:"KW"}}</td>
+      <td>
+        <a [routerLink]="['/carUpdate', car.id]">Update car {{ car.model }}</a>
+      </td>
+      <td>
+        <button (click)="onDeleteDirectly(car, $event)">Delete Car : {{ car.model }}</button>
+      </td>
+      <td>
+        <a [routerLink]="['/carDeletion', car.id]">Go To Delete Car : {{ car.model }}</a>
+      </td>
+    <!-- </app-car-detail> -->
+  </tr>
+</table>
+
+<div *ngIf="isCarDeleted">
+  <p>The following car has been deleted : </p>
+  <ul>
+      <li>Id : {{ carDeleted.id }}</li>
+      <li>Brand : {{ carDeleted.brand }}</li>
+      <li>Model : {{ carDeleted.model }}</li>
+      <li>Price : {{ carDeleted.price }}</li>
+      <li>Weight : {{ carDeleted.weight }}</li>
+      <li>HorsePower : {{ carDeleted.horsePower }}</li>
+      <li>N° Seats : {{ carDeleted.nbSeats }}</li>
+    </ul>
+</div>
