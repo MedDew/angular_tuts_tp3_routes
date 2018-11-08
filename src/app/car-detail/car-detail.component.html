@@ -1,0 +1,103 @@
+<div *ngIf="!isCarEdition">
+  <button (click)="editCar()">Edit car : {{car?.brand}} {{car?.model}}</button>
+</div>
+
+<div [ngSwitch]="isCarEdition">
+
+  <div *ngSwitchCase="false">
+    <h1>Car Detail</h1>
+    <ul>
+      <li><b>Brand :</b> {{car?.brand}}</li>
+      <li><b>Model : </b>{{car?.model}}</li>
+      <li><b>Price : </b>{{car?.price}}</li>
+      <li><b>Seats : </b>{{car?.nbSeats}}</li>
+      <li><b>HorsePower : </b>{{car?.horsePower}}</li>
+      <li><b>Weight : </b>{{car?.weight}}</li>
+    </ul>
+  </div>
+  
+  <div *ngSwitchCase="true">
+    <form [formGroup]="carFormEditionGroup" (ngSubmit)="onCarEdit(carFormEditionGroup)">
+      
+      <input type="hidden"  formControlName="id"  /><!--[value]="car.brand"-->
+      <div>
+        <label for="brand">Brand : </label>
+        <!--VALUE OF THIS FIELD IS SET IN THE ngOnINit METHOD OF THE COMPONENT-->
+        <input type="text" id="brand" formControlName="brand"  /><!--[value]="car.brand"-->
+        <div *ngIf="carFormEditionGroup.controls.brand.touched || carFormEditionGroup.controls.brand.dirty">
+          <span *ngIf="carFormEditionGroup.controls.brand.errors != null && carFormEditionGroup.controls.brand.errors.required">
+            Please enter a car brand
+          </span>
+        </div>
+      </div>
+      <br/>
+      
+      <div>
+        <label for="model">Model : </label>
+        <!--VALUE OF THIS FIELD IS SET IN THE ngOnINit METHOD OF THE COMPONENT-->
+        <input type="text" id="model" formControlName="model"/><!--[value]="car.model"-->
+        <div *ngIf="carFormEditionGroup.controls.model.touched || carFormEditionGroup.controls.model.dirty">
+          <span *ngIf="carFormEditionGroup.controls.model.errors != null && carFormEditionGroup.controls.model.errors.required">
+            Please enter a car model
+          </span>
+        </div>
+      </div>
+      <br/>
+      
+      <div>
+        <label for="price">Price : </label>
+        <!--VALUE OF THIS FIELD IS SET IN THE ngOnINit METHOD OF THE COMPONENT-->
+        <input type="number" id="price" formControlName="price"/><!--[value]="car.price"-->
+        <div *ngIf="carFormEditionGroup.controls.price.touched || carFormEditionGroup.controls.price.dirty">
+          <span *ngIf="carFormEditionGroup.controls.price.errors != null && carFormEditionGroup.controls.price.errors.required">
+            Please enter a car price
+          </span>
+        </div>
+      </div>
+      <br/>
+      
+      <div>
+        <label for="seats">Seats number : </label>
+        <!--VALUE OF THIS FIELD IS SET IN THE ngOnINit METHOD OF THE COMPONENT-->
+        <input type="number" id="seats" formControlName="seats" max="5" /><!--[value]="car.nbSeats"-->
+        <div *ngIf="carFormEditionGroup.controls.seats.touched || carFormEditionGroup.controls.seats.dirty">
+          <span *ngIf="carFormEditionGroup.controls.seats.errors != null && carFormEditionGroup.controls.seats.errors.required">
+            Please enter a the number of seats
+          </span>
+        </div>
+      </div>
+      <br/>
+      
+      <div>
+        <label for="horsePower">Horse Power : </label>
+        <!--VALUE OF THIS FIELD IS SET IN THE ngOnINit METHOD OF THE COMPONENT-->
+        <input type="number" id="horsePower" formControlName="horsePower" /><!--[value]="car.horsePower"-->
+        <div *ngIf="carFormEditionGroup.controls.horsePower.touched || carFormEditionGroup.controls.horsePower.dirty">
+          <span *ngIf="carFormEditionGroup.controls.horsePower.errors != null && carFormEditionGroup.controls.horsePower.errors.required">
+            Please enter a the horse power
+          </span>
+        </div>
+      </div>
+      <br/>
+      
+      <div>
+        <label for="weight">Weight : </label>
+        <!--VALUE OF THIS FIELD IS SET IN THE ngOnINit METHOD OF THE COMPONENT-->
+        <input type="number" id="weight" formControlName="weight" /><!--[value]="car.weight"-->
+        <div *ngIf="carFormEditionGroup.controls.weight.touched || carFormEditionGroup.controls.weight.dirty">
+          <span *ngIf="carFormEditionGroup.controls.weight.errors != null && carFormEditionGroup.controls.weight.errors.required">
+            Please enter a the weight
+          </span>
+        </div>
+      </div>
+      <br/>
+      
+      <div>
+        <input type="submit" value="Update Car" />
+      </div>
+      <br/>
+
+
+    </form>
+  </div>
+</div>
